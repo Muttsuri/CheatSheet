@@ -89,7 +89,7 @@ c6 = c5e*10 --10 000
 - **Length Limit**: Max 100$m$, 90$m$ Recommended for [Cat5](#cat5), [Cat5e](#cat5eextended), [Cat6](#cat6)
 - Corsstalk reduces with each iteration
 
----
+
 ## IP:
 
 ### IP bit size:
@@ -128,7 +128,7 @@ typeB: [128..191]
 typeC: [192..223]
 ```
 
----
+
 
 ## IEEE 802.11 Wireless Standard
 
@@ -217,14 +217,14 @@ $$
 - 3466.8 Mbit/s
   - 802.11ac 
 
----
+
 
 
 ## IEEE 802.1X
 - Port based NAC(Network Access Control)(PNAC)
 - Deals with the connection security of networks 
 
----
+
 
 ## Network Protocols
 
@@ -388,9 +388,7 @@ A *"Listen before talk"* approach to communication to avoid collisions.
 | [5000, 5500]   | League of Legends                                   |
 | 5432           | PostgreSQL                                          |
 
----
 
 ## Network Topologies
 ![NetworkTopologies](https://upload.wikimedia.org/wikipedia/commons/9/97/NetworkTopologies.svg)
 
----
