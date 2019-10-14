@@ -14,6 +14,7 @@
     - [Private IPs:](#private-ips)
     - [IP Classes:](#ip-classes)
     - [Loopback IP:](#loopback-ip)
+    - [LLA(Link-Local Address)/AIPA(Automatic Private IP Adressing)](#llalink-local-addressaipaautomatic-private-ip-adressing)
     - [Subneting Masks](#subneting-masks)
       - [Takewaways](#takewaways)
       - [Calculating subnet](#calculating-subnet)
@@ -122,7 +123,6 @@ Note that it increases the attack surface
 v4 = [224.0.0.0 .. 239.255.255.255]
 ```
 
-
 ### Private IPs:
     10.*
     192.168.*
@@ -145,9 +145,13 @@ typeC: [192..223]
 Think *Localhost*
 **Note:** Loopback IPv4 address stands in the A class range and its a good anchor point for the limit of the Type A
  
+### LLA(Link-Local Address)/AIPA(Automatic Private IP Adressing)
+These are IP's given to systems when they can't access the DHCP Server
+In Microsoft Platforms this system has the name of APIPA and the adresses given are:
 
-
-
+- IPv4 -> 169.254.*
+- IPv6 -> fe80::/10
+- 
 ### Subneting Masks
 
 |            Netmask             |     | Hosts | Addresses |
