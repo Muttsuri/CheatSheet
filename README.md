@@ -35,6 +35,7 @@
   - [IEEE 802.1X](#ieee-8021x)
   - [Network Protocols](#network-protocols)
     - [OSI Protocols](#osi-protocols)
+      - [Mnemonic:](#mnemonic)
     - [VPN(Virtual Private Network)](#vpnvirtual-private-network)
     - [VTP(VLAN Tunneling Protocol)](#vtpvlan-tunneling-protocol)
       - [Trunk port](#trunk-port)
@@ -319,6 +320,9 @@ compatibility[802.11a, 802.11ac] /= compatibility[802.11g, 802.11b]
    - [DNS](#dns)
    - SSH
    - etc.
+
+#### Mnemonic:
+**A***ll* **P***eople* **S***eem* **T***o* **N***eed* **D***ata* **P***rocessing*
 
 ### VPN(Virtual Private Network)
 Extends a VLAN across a public network, forming an encrypted connection across the internet to resources in a private network.
