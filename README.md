@@ -9,12 +9,15 @@
       - [Pattern:](#pattern)
   - [IP:](#ip)
     - [IP bit size:](#ip-bit-size)
-    - [6to4](#6to4)
-    - [Teredo tunneling](#teredo-tunneling)
+    - [IPv6 -> IPv4 Transition Mechanisms](#ipv6---ipv4-transition-mechanisms)
     - [Multicast IP:](#multicast-ip)
-    - [Loopback IP:](#loopback-ip)
     - [Private IPs:](#private-ips)
     - [IP Classes:](#ip-classes)
+    - [Loopback IP:](#loopback-ip)
+    - [Subneting Masks](#subneting-masks)
+      - [Takewaways](#takewaways)
+      - [Calculating subnet](#calculating-subnet)
+        - [Steps](#steps)
   - [IEEE 802.11 Wireless Standard](#ieee-80211-wireless-standard)
     - [WEP(Wired Equivalent Privacy)](#wepwired-equivalent-privacy)
     - [WEP2](#wep2)
@@ -32,18 +35,23 @@
   - [IEEE 802.1X](#ieee-8021x)
   - [Network Protocols](#network-protocols)
     - [OSI Protocols](#osi-protocols)
+    - [VPN(Virtual Private Network)](#vpnvirtual-private-network)
     - [VTP(VLAN Tunneling Protocol)](#vtpvlan-tunneling-protocol)
+      - [Trunk port](#trunk-port)
     - [IKE(Internet Key exchange)](#ikeinternet-key-exchange)
     - [NTP(Network Time Protocol)](#ntpnetwork-time-protocol)
     - [TTL(Time to Live)](#ttltime-to-live)
-    - [FQDN(Fully) Qualified Domain Name)](#fqdnfully-qualified-domain-name)
     - [NetBIOS](#netbios)
       - [NBT/NetBT/NBNS(NetBIOS over TCP/IP)](#nbtnetbtnbnsnetbios-over-tcpip)
       - [WINS(Windows Internet Name Service)](#winswindows-internet-name-service)
     - [Contention](#contention)
     - [DNS](#dns)
+      - [Records](#records)
       - [DNS Zones](#dns-zones)
-    - [LDAPU(Lightweight Directory Access Protocol)](#ldapulightweight-directory-access-protocol)
+      - [FQDN(Fully) Qualified Domain Name)](#fqdnfully-qualified-domain-name)
+      - [DNSSEC(DNS Security Extencion)](#dnssecdns-security-extencion)
+      - [DNS Cache](#dns-cache)
+    - [LDAP(Lightweight Directory Access Protocol)](#ldaplightweight-directory-access-protocol)
   - [Ports](#ports)
     - [Well Known Ports](#well-known-ports)
     - [Registered Ports](#registered-ports)
@@ -67,7 +75,8 @@ Uses 8P8C (8 Position 8 Contact) modular connector, generally called $RJ45$
 
 ### Cat5e(Extended):
     350 MHz
-    1 Gbps
+    1 Gbp/s @ 30m 
+    300 Mbit/s @ 100m
     10/100/1000 Eth/FastEth/GbEth
     100 meters (90m Recommended)
 
@@ -96,12 +105,14 @@ c6 = c5e*10 --10 000
     v4 -> 32 bit
     v6 -> 128 bit
 
-### 6to4
-Allows IPv6 packets to be transmitted over an IPv4 network
+### IPv6 -> IPv4 Transition Mechanisms
+
+* #### 6to4
+  Allows IPv6 packets to be transmitted over an IPv4 network
 Unlike [Turedo tunneling](#teredo-tunneling)
 
-### Teredo tunneling
-Gives full IPv6 connectivity for capable hosts on an IPv4 network.
+* #### Teredo tunneling
+  Gives full IPv6 connectivity for capable hosts on an IPv4 network.
 Unlike [6to4](#6to4) it can perform it's functions through NAT
 Note that it increases the attack surface
 
@@ -110,9 +121,6 @@ Note that it increases the attack surface
 v4 = [224.0.0.0 .. 239.255.255.255]
 ```
 
-### Loopback IP:
-- v4 -> 127.0.0.1
-- v6 .> ::1
 
 Think $Localhost$
 
@@ -124,9 +132,60 @@ Think $Localhost$
 ### IP Classes:
 ```haskell
 typeA: [1..126]
+-- 1 to loopback - 1
 typeB: [128..191]
+-- From looback + 1 to "the classic" 192 - 1
 typeC: [192..223]
+-- 192 (Classic) to 223
 ```
+
+### Loopback IP:
+- v4 -> 127.0.0.1
+- v6 .> ::1
+- **Note:** Loopback IPv4 address stands in the A class range and its a good anchor point for the limit of the Type A
+
+
+### Subneting Masks
+
+|     Netmask     |     | Hosts | Addresses |
+|:---------------:|-----|:-----:|:---------:|
+|   255.255.0.0   | /16 | 35534 |   35536   |
+|  255.255.128.0  | /17 | 32764 |   32768   |
+|  255.255.192.0  | /18 | 10382 |   16384   |
+|  255.255.224.0  | /29 |  8190 |    8192   |
+|  255.255.240.0  | /20 |  4094 |    4096   |
+|  255.255.248.0  | /21 |  2046 |    2048   |
+|  255.255.252.0  | /22 |  1022 |    1024   |
+|  255.255.254.0  | /23 |  510  |    512    |
+|  255.255.255.0  | /24 |  254  |    256    |
+| 255.255.255.128 | /25 |  126  |    128    |
+| 255.255.255.192 | /26 |   62  |     64    |
+| 255.255.255.224 | /27 |   30  |     32    |
+| 255.255.255.240 | /28 |   14  |     16    |
+| 255.255.255.248 | /29 |   6   |     8     |
+| 255.255.255.252 | /30 |   2   |     4     |
+| 255.255.255.254 | /31 |   1   |     2     |
+
+#### Takewaways
+  
+  1. They never end in [32, 64]
+  2. They always end in even numbers with the exception of:
+     1. 0
+     2. 255
+  3. Pattern: [0,128,192,224,240,248,252,254,255]
+     1. **NOTE**: *255.255.255.255* Is **NOT** a valid sequence
+    
+
+#### Calculating subnet
+
+![Subnetmask-Format](https://lh6.googleusercontent.com/iBFHUOE1k7_VWFNFNPkDVTFDBITorm7tqN2jOQd-nCKdbYFCe6WYSwU5oK7W8q-jdcFS6qI2SWDtVMBjbcHgfIJzCxcxFniq9stVv0w5HHnh8cXqx9ntE8aPrs-6y97o-UUrhZmq)
+
+##### Steps
+
+ 1. Convert to Binary
+ 2. Calculate the subnet address
+ 3. Find host Range
+ 4. Calculate the total number of subsets and hosts per subnet
 
 
 
@@ -257,8 +316,13 @@ $$
    - SSH
    - etc.
 
+### VPN(Virtual Private Network)
+Extends a VLAN across a public network, forming an encrypted connection across the internet to resources in a private network.
+
 ### VTP(VLAN Tunneling Protocol)
 Cisco proprietary protocol that allows the configuration of multiple switches to a single VLAN without having to configure each switch manually one at a time.
+#### Trunk port
+A Trunk port is a port that supports VLAN traffic between two switches.
 
 ### IKE(Internet Key exchange)
 A protocol used in the SA(Security Association) in IPsec
@@ -270,15 +334,11 @@ Protocol for time synchronization between packet switched connected systems.
 Also known as hib limit, it limits the lifetime of data in a computer or network.
 Used in:
 - IP Packets
-- DNS Records
+- [DNS Records](#records)
+- [DNS Cache](#dns-cache)
 - HTTP (Header responses)
 
-### FQDN(Fully) Qualified Domain Name)
-Also refereed as Absolute Domain Name.
-It's a Domain Name that specifies it's exact location in the tree hierarchy of the DNS.
-Think:
-  myhost in the domain example.com
-  the fully qualified name is -> [myhost.example.com](http://example.com/)
+
 
 ### NetBIOS
 Provides services related to the session layer of the OSI model.
@@ -296,12 +356,42 @@ A *"Listen before talk"* approach to communication to avoid collisions.
 
 ### DNS
 
+#### Records
+
+| Record                   | Description                                                      |
+|--------------------------|------------------------------------------------------------------|
+| A                        | Maps Domain Names to IPv4 Addresses (DN -> IPv4)                 |
+| AAAA ("A4")              | Maps Domain Names to IPv6 Addresses (DN -> IPv6                  |
+| CNAME(Canonical Name)    | Redirects Domain Names to other Domain Names (DN -> DN           |
+| MX (Maill Exchanger)     | Points to e-mail Services (e.g @outlook.com)                     |
+| NS (Name Server)         | Points to another DNS Server                                     |
+| PTR (Pointer)            | Maps IP Adresses to Domain Names (IP -> DN)                      |
+| SRV (Service)            | Points to services within a domain                               |
+| SOA (Start of Authority) | Indicates the beginning of a Zone, therefore each Zone has a SOA |
+| TXT                      | Basically just comments                                          |
+
 #### DNS Zones
 ![DnsZones](https://www.cloudflare.com/img/learning/dns/glossary/dns-zone/dns-zone.png)
 
-### LDAPU(Lightweight Directory Access Protocol)
+#### FQDN(Fully) Qualified Domain Name)
+Also refereed as Absolute Domain Name.
+It's a Domain Name that specifies it's exact location in the tree hierarchy of the DNS.
+Think:
+  myhost in the domain example.com
+  the fully qualified name is -> [myhost.example.com](http://example.com/)
+Extension
 
+#### DNSSEC(DNS Security Extencion)
+A specification that adds security resources to the DNS Server.
+It provides authentication and integrity but no DoS.
+It's a scheme of public and private keys, and with the digital certificates one can be sure of the DNS Server's Identity
 
+#### DNS Cache
+This is a cache of DNS results stored in the client so that the next time that the user asks for the site it won't call on the DNS server but instead it will go directly to the address.
+This value has a [TTL](#ttltime-to-live).
+
+### LDAP(Lightweight Directory Access Protocol)
+A lightweight protocol to scan for the network's resources :grey_question:
 
 ## Ports
 
@@ -330,7 +420,7 @@ A *"Listen before talk"* approach to communication to avoid collisions.
 | 150  | NetBIOS Sessing Service   |
 | 156  | SQL Server                |
 | 161  | SNMP                      |
-| 179  | Border Gateway Protocol    |
+| 179  | Border Gateway Protocol   |
 | 190  | Gateway Access Protocol   |
 | 194  | Internet Chat Relay (IRC) |
 | 443  | HTTPS                     |
@@ -369,24 +459,9 @@ A *"Listen before talk"* approach to communication to avoid collisions.
 | [9001, 9030]   | Tor Network :                                       |
 | 9150           | Tor Browser :computer:                              |
 | [27000..27009] | Steam Game Client                                   |
-| [27015..27030] | Steam Matchmaking/Downloads                          |
+| [27015..27030] | Steam Matchmaking/Downloads                         |
 | 27017          | MongoDB                                             |
 | 33434          | traceroute                                          |
-| 1119           | Battle.net chat/game :video_game:                   |
-| 1194           | OpenVPN                                             |
-| 1293           | IPsec                                               |
-| 1433           | MSSQL Server                                        |
-| 1434           | MSSQL Monitor                                       |
-| 1512           | [WINS](#winswindows-internet-name-service)          |
-| 1723           | PPTP                                                |
-| 1812           | RADIUS Authentication                               |
-| 1813           | RADIUS Accounting                                   |
-| 2010           | Artemis: Spaceship Bridge Simulator :space_invader: |
-| 3306           | MySQL                                               |
-| 3389           | Microsoft RDP (WBT)                                 |
-| 3960/3962      | Warframe                                            |
-| [5000, 5500]   | League of Legends                                   |
-| 5432           | PostgreSQL                                          |
 
 
 ## Network Topologies
