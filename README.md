@@ -151,7 +151,7 @@ In Microsoft Platforms this system has the name of APIPA and the adresses given 
 
 - IPv4 -> 169.254.*
 - IPv6 -> fe80::/10
-- 
+
 ### Subneting Masks
 
 |            Netmask             |     | Hosts | Addresses |
