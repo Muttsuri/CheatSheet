@@ -17,7 +17,7 @@
     - [Subneting Masks](#subneting-masks)
       - [Takewaways](#takewaways)
       - [Calculating subnet](#calculating-subnet)
-        - [Steps](#steps)
+        - [CIDR(Classles Inter-Domain Routing)](#cidrclassles-inter-domain-routing)
   - [IEEE 802.11 Wireless Standard](#ieee-80211-wireless-standard)
     - [WEP(Wired Equivalent Privacy)](#wepwired-equivalent-privacy)
     - [WEP2](#wep2)
@@ -150,24 +150,24 @@ Think *Localhost*
 
 ### Subneting Masks
 
-|     Netmask     |     | Hosts | Addresses |
-|:---------------:|-----|:-----:|:---------:|
-|   255.255.0.0   | /16 | 35534 |   35536   |
-|  255.255.128.0  | /17 | 32764 |   32768   |
-|  255.255.192.0  | /18 | 10382 |   16384   |
-|  255.255.224.0  | /29 |  8190 |    8192   |
-|  255.255.240.0  | /20 |  4094 |    4096   |
-|  255.255.248.0  | /21 |  2046 |    2048   |
-|  255.255.252.0  | /22 |  1022 |    1024   |
-|  255.255.254.0  | /23 |  510  |    512    |
-|  255.255.255.0  | /24 |  254  |    256    |
-| 255.255.255.128 | /25 |  126  |    128    |
-| 255.255.255.192 | /26 |   62  |     64    |
-| 255.255.255.224 | /27 |   30  |     32    |
-| 255.255.255.240 | /28 |   14  |     16    |
-| 255.255.255.248 | /29 |   6   |     8     |
-| 255.255.255.252 | /30 |   2   |     4     |
-| 255.255.255.254 | /31 |   1   |     2     |
+|            Netmask             |     | Hosts | Addresses |
+| :----------------------------: | --- | :---: | :-------: |
+|          255.255.0.0           | /16 | 35534 |   35536   |
+|         255.255.128.0          | /17 | 32764 |   32768   |
+|         255.255.192.0          | /18 | 10382 |   16384   |
+|         255.255.224.0          | /29 | 8190  |   8192    |
+|         255.255.240.0          | /20 | 4094  |   4096    |
+|         255.255.248.0          | /21 | 2046  |   2048    |
+|         255.255.252.0          | /22 | 1022  |   1024    |
+|         255.255.254.0          | /23 |  510  |    512    |
+| :arrow_forward:  255.255.255.0 | /24 |  254  |    256    |
+|        255.255.255.128         | /25 |  126  |    128    |
+|        255.255.255.192         | /26 |  62   |    64     |
+|        255.255.255.224         | /27 |  30   |    32     |
+|        255.255.255.240         | /28 |  14   |    16     |
+|        255.255.255.248         | /29 |   6   |     8     |
+|        255.255.255.252         | /30 |   2   |     4     |
+|        255.255.255.254         | /31 |   1   |     2     |
 
 #### Takewaways
   
@@ -178,19 +178,21 @@ Think *Localhost*
   3. Pattern: [0,128,192,224,240,248,252,254,255]
      1. **NOTE**: *255.255.255.255* Is **NOT** a valid sequence
     
-
 #### Calculating subnet
 
-![Subnetmask-Format](https://lh6.googleusercontent.com/iBFHUOE1k7_VWFNFNPkDVTFDBITorm7tqN2jOQd-nCKdbYFCe6WYSwU5oK7W8q-jdcFS6qI2SWDtVMBjbcHgfIJzCxcxFniq9stVv0w5HHnh8cXqx9ntE8aPrs-6y97o-UUrhZmq)
+##### CIDR(Classles Inter-Domain Routing)
+For the netmask  255.255.255.128 what is the CIDR?
+**R:** The *CIDR = 8+8+8+1 = 24* therefore 192.168.1.1 /25
 
-##### Steps
+| 182 | 64 | 32 | 16 | 8 | 4 | 2 | 1 | Sum | Total 1 |
+|-----|----|----|----|---|---|---|---|-----|---------|
+| 1   | 1  | 1  | 1  | 1 | 1 | 1 | 1 | 255 | 8       |
+| 1   | 1  | 1  | 1  | 1 | 1 | 1 | 1 | 255 | 8       |
+| 1   | 1  | 1  | 1  | 1 | 1 | 1 | 1 | 255 | 8       |
+| 1   | 0  | 0  | 0  | 0 | 0 | 0 | 0 | 128 | 1       |
 
- 1. Convert to Binary
- 2. Calculate the subnet address
- 3. Find host Range
- 4. Calculate the total number of subsets and hosts per subnet
-
-
+**Therefore**
+The CIDR value = Sum the number of 1's in the netmask
 
 ## IEEE 802.11 Wireless Standard
 
@@ -367,7 +369,7 @@ A *"Listen before talk"* approach to communication to avoid collisions.
 #### Records
 
 | Record                   | Description                                                      |
-|--------------------------|------------------------------------------------------------------|
+| ------------------------ | ---------------------------------------------------------------- |
 | A                        | Maps Domain Names to IPv4 Addresses (DN -> IPv4)                 |
 | AAAA ("A4")              | Maps Domain Names to IPv6 Addresses (DN -> IPv6                  |
 | CNAME(Canonical Name)    | Redirects Domain Names to other Domain Names (DN -> DN           |
