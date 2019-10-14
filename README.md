@@ -61,7 +61,7 @@
 ### BaseT cable
 Ethernet over twisted pair
 Range from Cat3 to Cat8
-Uses 8P8C (8 Position 8 Contact) modular connector, generally called $RJ45$
+Uses 8P8C (8 Position 8 Contact) modular connector, generally called *RJ45*
 
 ## Cat cables frequency/speed:
 (All compatible)
@@ -95,7 +95,7 @@ c5 = 100
 c5e = c5*10 --1000
 c6 = c5e*10 --10 000
 ```
-- **Length Limit**: Max 100$m$, 90$m$ Recommended for [Cat5](#cat5), [Cat5e](#cat5eextended), [Cat6](#cat6)
+- **Length Limit**: Max 100*m*, 90*m* Recommended for [Cat5](#cat5), [Cat5e](#cat5eextended), [Cat6](#cat6)
 - Corsstalk reduces with each iteration
 
 
@@ -122,8 +122,6 @@ v4 = [224.0.0.0 .. 239.255.255.255]
 ```
 
 
-Think $Localhost$
-
 ### Private IPs:
     10.*
     192.168.*
@@ -142,7 +140,11 @@ typeC: [192..223]
 ### Loopback IP:
 - v4 -> 127.0.0.1
 - v6 .> ::1
-- **Note:** Loopback IPv4 address stands in the A class range and its a good anchor point for the limit of the Type A
+
+Think *Localhost*
+**Note:** Loopback IPv4 address stands in the A class range and its a good anchor point for the limit of the Type A
+ 
+
 
 
 ### Subneting Masks
@@ -219,10 +221,10 @@ Based on AES, a cryptographic algorithm
 
 #### Protocol Table
 ##### Notes
-- Frequency has to do with where in $"space"$ does the network communicate
+- Frequency has to do with where in *"space"* does the network communicate
   - Thus this defines what networks can talk with each other
   - The slowest speed will always be the defined one
-- Bandwidth tells you the distance between $"lanes"$ in the frequency highway
+- Bandwidth tells you the distance between *"lanes"* in the frequency highway
   - This is what creates the channels and there are generally 14 of them
  
 | Protocol | Frequency (Ghz) | Bandwidth(Mhz) |    Max DataRate(Mbit/s)     | Indoor Range(m) | Outdoor Range (m) |
@@ -244,7 +246,7 @@ Based on AES, a cryptographic algorithm
   - 802.11g
   - 802.11n
 
-This means that the protocol $802.11n$ is the most incompatible since it operates at both frequencies.
+This means that the protocol *802.11n* is the most incompatible since it operates at both frequencies.
 
 ###### Protocol Compatibility Table
 
@@ -256,14 +258,16 @@ This means that the protocol $802.11n$ is the most incompatible since it operate
 |    802.11n    | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: | :white_check_mark: | :heavy_check_mark: |
 |   802.11ac    | :heavy_check_mark: |        :x:         |        :x:         | :heavy_check_mark: | :white_check_mark: |
 
-- $802.11n$ is compatible with **Everything!**
-- $802.11a$, $802.11ac$ are compatible with each other (and $802.11n$)
-- $802.11b$, $802.11g$ are compatible with each other (and $802.11n$)
+- *802.11n* is compatible with **Everything!**
+- *802.11a*, *802.11ac* are compatible with each other (and *802.11n*)
+- *802.11b*, *802.11g* are compatible with each other (and *802.11n*)
 
-Thus the compatibility of $802.11b$ and $802.11g$ (with the exclusion of the $802.11n$ rule) are the logical negative of the $802.11a$ and $802.11ac$ compatibility.
-$$
-compatibility[802.11a, 802.11ac] \neg compatibility[802.11g, 802.11b]
-$$
+Thus the compatibility of *802.11b* and *802.11g* (with the exclusion of the *802.11n* rule) are the logical negative of the *802.11a* and *802.11ac* compatibility.
+
+```haskell
+compatibility[802.11a, 802.11ac] /= compatibility[802.11g, 802.11b]
+```
+
 
 ##### Maximum Throughput
 - 54 Mbit/s
@@ -455,7 +459,7 @@ A lightweight protocol to scan for the network's resources :grey_question:
 | [6000..6063]   | X11 over Network                                    |
 | 6379           | Redis                                               |
 | [6463..6472]   | Discord                                             |
-| $8080$, $8008$ | Alternative to HTTP                                 |
+| *8080*, *8008* | Alternative to HTTP                                 |
 | [9001, 9030]   | Tor Network :                                       |
 | 9150           | Tor Browser :computer:                              |
 | [27000..27009] | Steam Game Client                                   |
