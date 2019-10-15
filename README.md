@@ -140,9 +140,9 @@ typeC: [192..223]
 
 ### Loopback IP:
 - v4 -> 127.0.0.1
-- v6 .> ::1
+- v6 -> ::1
 
-Think *Localhost*
+Think *Localhost* <br>
 **Note:** Loopback IPv4 address stands in the A class range and its a good anchor point for the limit of the Type A
  
 ### LLA(Link-Local Address)/AIPA(Automatic Private IP Adressing)
