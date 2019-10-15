@@ -9,6 +9,9 @@
       - [Pattern:](#pattern)
   - [IP:](#ip)
     - [IP bit size:](#ip-bit-size)
+    - [IPv6](#ipv6)
+      - [Structure](#structure)
+      - [Conventions](#conventions)
     - [IPv6 -> IPv4 Transition Mechanisms](#ipv6---ipv4-transition-mechanisms)
     - [Multicast IP:](#multicast-ip)
     - [Private IPs:](#private-ips)
@@ -106,6 +109,20 @@ c6 = c5e*10 --10 000
 ### IP bit size:
     v4 -> 32 bit
     v6 -> 128 bit
+
+### IPv6
+
+#### Structure
+Eight groups of 4 hexadecimal numbers, each quartet has the capability of 16 bit for a total of 128 bit.
+First 64 bits (4 quartets) identify the network, the last 64 bits identify the host.
+
+You can configure it in two ways:
+1. Sequencialy **e.g ->** *2001:bce4::2*,*2001:bce4::3*
+2. Using the MAC addresses to identify the hosts, it is the default for automatic IPv4 Addressing
+
+#### Conventions
+Since it's size is defined, anything that is not put is assumed to be zero **e.g** *8::1* -> 0008:0000:0000:0000:0000:0000:0000:0001
+Thus the example of the [Loopback Address](#loopback-ip) *::1* = *0000:0000:0000:0000:0000:0000:0000:0001*
 
 ### IPv6 -> IPv4 Transition Mechanisms
 
