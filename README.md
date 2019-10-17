@@ -214,6 +214,27 @@ For the netmask  255.255.255.128 what is the CIDR?
 
 **Therefore**
 The CIDR value = Sum the number of 1's in the netmask
+The min ip value is: 192.168.1.1
+The max ip value is: 192.168.1.125 (127-2)
+
+**Example Exercise:**
+IP: 192.198.0.0 /22
+
+binary Netmask: 11111111.11111111.11111100.000000 -> There is a total of 22 (up)bits
+decimal Netmask: 255.255. :arrow_down_small: 
+
+                        182 | 64 | 32 | 16 | 8 | 4 | 2 | 1 |
+                        1     1     1   1    1   1   0   0
+                        182 + 64 + 32 + 16 + 8 + 4 + 0 + 0 = 252
+      or sum the zeros  ---------------------------- 2  +1  = 3
+      then subtract from 255 -> 255 - 3 = 252
+netmask: 255.255.252.0
+
+
+**Total number of Hosts:**
+ *min*: 192.168.0.1
+ *max:*  192.168.3.254
+ `You have 2 available bits (for a total of 0 to 3 in decimal) free in the 3rd group of the mask`
 
 ## IEEE 802.11 Wireless Standard
 
