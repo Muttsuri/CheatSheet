@@ -118,12 +118,14 @@ c6 = c5e*10 --10 000
 ### IP Classes:
 ```haskell
 typeA: [1..126]
--- 1 to loopback - 1
+-- 1 to 127.255.255.255
+-- loopack (127.0.0.1) 
 typeB: [128..191]
--- From looback + 1 to "the classic" 192 - 1
+-- From 128.0.0.0.0 to "the classic" 192 - 1
 typeC: [192..223]
 -- 192 (Classic) to multicast - 1
 ```
+They all start at *N.0.0.0.0* and end at *N.255.255.255*
 
 ### Loopback IP:
 - v4 -> 127.0.0.1
