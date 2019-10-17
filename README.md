@@ -9,14 +9,14 @@
       - [Pattern:](#pattern)
   - [IP:](#ip)
     - [IP bit size:](#ip-bit-size)
+    - [Private IPs:](#private-ips)
+    - [IP Classes:](#ip-classes)
+    - [Loopback IP:](#loopback-ip)
+    - [Multicast IP:](#multicast-ip)
     - [IPv6](#ipv6)
       - [Structure](#structure)
       - [Conventions](#conventions)
     - [IPv6 -> IPv4 Transition Mechanisms](#ipv6---ipv4-transition-mechanisms)
-    - [Multicast IP:](#multicast-ip)
-    - [Private IPs:](#private-ips)
-    - [IP Classes:](#ip-classes)
-    - [Loopback IP:](#loopback-ip)
     - [LLA(Link-Local Address)/AIPA(Automatic Private IP Adressing)](#llalink-local-addressaipaautomatic-private-ip-adressing)
     - [Subneting Masks](#subneting-masks)
       - [Takewaways](#takewaways)
@@ -110,6 +110,33 @@ c6 = c5e*10 --10 000
     v4 -> 32 bit
     v6 -> 128 bit
 
+### Private IPs:
+    Class A: 10.*
+    Class B: 172.[16..31].*
+    Class C: 192.168.*   
+
+### IP Classes:
+```haskell
+typeA: [1..126]
+-- 1 to loopback - 1
+typeB: [128..191]
+-- From looback + 1 to "the classic" 192 - 1
+typeC: [192..223]
+-- 192 (Classic) to multicast - 1
+```
+
+### Loopback IP:
+- v4 -> 127.0.0.1
+- v6 -> ::1
+
+Think *Localhost* <br>
+**Note:** Loopback IPv4 address stands in the A class range and its a good anchor point for the limit of the Type A
+
+### Multicast IP:
+```haskell
+v4 = [224.0.0.0 .. 239.255.255.255]
+```
+
 ### IPv6
 
 #### Structure
@@ -135,33 +162,7 @@ Unlike [Turedo tunneling](#teredo-tunneling)
 Unlike [6to4](#6to4) it can perform it's functions through NAT
 Note that it increases the attack surface
 
-### Multicast IP:
-```haskell
-v4 = [224.0.0.0 .. 239.255.255.255]
-```
 
-### Private IPs:
-    10.*
-    192.168.*
-    172.[16..31].*
-
-### IP Classes:
-```haskell
-typeA: [1..126]
--- 1 to loopback - 1
-typeB: [128..191]
--- From looback + 1 to "the classic" 192 - 1
-typeC: [192..223]
--- 192 (Classic) to 223
-```
-
-### Loopback IP:
-- v4 -> 127.0.0.1
-- v6 -> ::1
-
-Think *Localhost* <br>
-**Note:** Loopback IPv4 address stands in the A class range and its a good anchor point for the limit of the Type A
- 
 ### LLA(Link-Local Address)/AIPA(Automatic Private IP Adressing)
 These are IP's given to systems when they can't access the DHCP Server
 In Microsoft Platforms this system has the name of APIPA and the adresses given are:
