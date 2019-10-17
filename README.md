@@ -133,6 +133,7 @@ Think *Localhost* <br>
 **Note:** Loopback IPv4 address stands in the A class range and its a good anchor point for the limit of the Type A
 
 ### Multicast IP:
+Also known as Class D IP's
 ```haskell
 v4 = [224.0.0.0 .. 239.255.255.255]
 ```
