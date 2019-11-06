@@ -209,7 +209,7 @@ In Microsoft Platforms this system has the name of APIPA and the adresses given 
 For the netmask  255.255.255.128 what is the CIDR?
 **R:** The *CIDR = 8+8+8+1 = 24* therefore 192.168.1.1 /25
 
-| 182 | 64 | 32 | 16 | 8 | 4 | 2 | 1 | Sum | Total 1 |
+| 128 | 64 | 32 | 16 | 8 | 4 | 2 | 1 | Sum | Total 1 |
 |-----|----|----|----|---|---|---|---|-----|---------|
 | 1   | 1  | 1  | 1  | 1 | 1 | 1 | 1 | 255 | 8       |
 | 1   | 1  | 1  | 1  | 1 | 1 | 1 | 1 | 255 | 8       |
@@ -227,9 +227,9 @@ IP: 192.198.0.0 /22
 binary Netmask: 11111111.11111111.11111100.000000 -> There is a total of 22 (up)bits
 decimal Netmask: 255.255. :arrow_down_small: 
 
-                        182 | 64 | 32 | 16 | 8 | 4 | 2 | 1 |
+                        128 | 64 | 32 | 16 | 8 | 4 | 2 | 1 |
                         1     1     1   1    1   1   0   0
-                        182 + 64 + 32 + 16 + 8 + 4 + 0 + 0 = 252
+                        128 + 64 + 32 + 16 + 8 + 4 + 0 + 0 = 252
       or sum the zeros  ---------------------------- 2  +1  = 3
       then subtract from 255 -> 255 - 3 = 252
 netmask: 255.255.252.0
