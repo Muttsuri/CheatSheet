@@ -16,7 +16,7 @@
     - [IPv6](#ipv6)
       - [Structure](#structure)
       - [Conventions](#conventions)
-    - [IPv6 -> IPv4 Transition Mechanisms](#ipv6---ipv4-transition-mechanisms)
+    - [IPv6 to IPv4 Transition Mechanisms](#ipv6-to-ipv4-transition-mechanisms)
     - [LLA(Link-Local Address)/AIPA(Automatic Private IP Adressing)](#llalink-local-addressaipaautomatic-private-ip-adressing)
     - [Subneting Masks](#subneting-masks)
       - [Takewaways](#takewaways)
@@ -36,6 +36,7 @@
         - [Protocol Compatibility](#protocol-compatibility)
           - [Protocol Compatibility Table](#protocol-compatibility-table)
         - [Maximum Throughput](#maximum-throughput)
+          - [NOTE](#note)
   - [IEEE 802.1X](#ieee-8021x)
   - [Network Protocols](#network-protocols)
     - [OSI Protocols](#osi-protocols)
@@ -154,7 +155,7 @@ You can configure it in two ways:
 Since it's size is defined, anything that is not put is assumed to be zero **e.g** *8::1* -> 0008:0000:0000:0000:0000:0000:0000:0001
 Thus the example of the [Loopback Address](#loopback-ip) *::1* = *0000:0000:0000:0000:0000:0000:0000:0001*
 
-### IPv6 -> IPv4 Transition Mechanisms
+### IPv6 to IPv4 Transition Mechanisms
 
 * #### 6to4
   Allows IPv6 packets to be transmitted over an IPv4 network
@@ -329,7 +330,8 @@ compatibility[802.11a, 802.11ac] /= compatibility[802.11g, 802.11b]
 - 3466.8 Mbit/s
   - 802.11ac 
 
-
+###### NOTE
+From the 802.11n onwards it also supports MIMO (Multiple Input Multiple Output)
 
 
 ## IEEE 802.1X
